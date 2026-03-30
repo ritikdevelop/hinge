@@ -1,3 +1,11 @@
 {
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cSpell.words": [
+        "Codegen",
+        "Fontisto",
+        "parametered",
+        "Proguard",
+        "Upsell"
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
