@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 
 import React from 'react';
 import {
@@ -17,6 +11,9 @@ import {
 } from 'react-native';
 
 import StackNavigator from './navigation/StackNavigator';
+import { AuthProvider } from './AuthContext';
+// import { SocketContextProvider } from './SocketContext'; // TODO: socket.io-client incompatible with React Native Metro bundler
+
 
 const Colors = {
   white: '#FFFFFF',
@@ -62,7 +59,12 @@ function App() {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return <StackNavigator />;
+  return (
+    <AuthProvider>
+      <StackNavigator />
+    </AuthProvider>
+    
+  );
 }
 
 const styles = StyleSheet.create({
