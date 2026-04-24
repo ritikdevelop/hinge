@@ -5,4 +5,3 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){
 }
 rootProject.name = 'hinge'
 include ':app'
-includeBuild('../node_modules/@react-native/gradle-plugin')
