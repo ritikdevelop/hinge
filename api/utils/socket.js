@@ -7,7 +7,7 @@ const userSocketMap = {};
 const initSocket = (server) => {
     io = new Server(server, {
         cors: {
-            origin: '',
+            origin: '*',
             methods: ['GET', 'POST'],
             credentials: true
         }
