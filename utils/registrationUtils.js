@@ -1,8 +1,8 @@
-import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const saveRegistrationProgress = async (screenName, data) => {
   try {
-    const key = `registrationProgress_${screenName}`;
+    const key = `registration_progress_${screenName}`;
     await AsyncStorage.setItem(key, JSON.stringify(data));
     console.log(`progress saved for screen ${screenName}`);
   } catch (error) {
