@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { createContext, useContext } from 'react';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import React, { useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
@@ -35,13 +35,13 @@ import SubscriptionScreen from '../screens/SubscriptionScreen';
 import WorkplaceScreen from '../screens/WorkplaceScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import ProfileDetailsScreen from '../screens/ProfileDetailsScreen';
-
-const AuthContext = createContext({ token: null });
+import AuthContext from '../AuthContext';
+import LottieView from 'lottie-react-native';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
-  const { token } = useContext(AuthContext);
+  const { token, isLoading } = useContext(AuthContext);
   function BottomTabs() {
     return (
       <Tab.Navigator
@@ -155,11 +155,11 @@ const StackNavigator = () => {
   const AuthStack = () => {
     return (
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
-        /> */}
+        />
         <Stack.Screen
           name="Basic"
           component={BasicInfoScreen}
@@ -293,9 +293,22 @@ const StackNavigator = () => {
       </Stack.Navigator>
     );
   }
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
+        <LottieView
+          source={require('../assets/loading.json')}
+          autoPlay
+          loop
+          style={{ width: 200, height: 200 }}
+        />
+      </View>
+    );
+  }
+
   return (
     <NavigationContainer>
-      <AuthStack />
+      {token ? <MainStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
