@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import axios from 'axios';
+import {BASE_URL} from '../urls/url.js';
 
 
 const OtpScreen = () => {
@@ -27,18 +29,18 @@ const OtpScreen = () => {
         return;
       }
 
-    //   try{
-    //     const response = await axios.post(`${BASE_URL}/confirmSignup`,{email,otpCode});
+      try{
+        const response = await axios.post(`${BASE_URL}/confirmSignup`,{email,otpCode});
 
-    //     if(response.status == 200){
-    //       console.log("response",response);
-    //       navigation.navigate("Birth")
-    //     }
-    //   } catch(error){
-    //     console.log("Error confirming the signup",error)
-    //   }
+        if(response.status == 200){
+          console.log("response",response);
+          navigation.navigate("Birth")
+        }
+      } catch(error){
+        console.log("Error confirming the signup",error)
+      }
 
-      // navigation.navigate("Birth")
+      navigation.navigate("Birth")
   }
 
   useEffect(() => {
