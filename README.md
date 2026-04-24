@@ -1,97 +1,110 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Hinge Clone - Full-Stack Dating Application
 
-# Getting Started
+A comprehensive dating application clone inspired by Hinge, built with React Native and Node.js. This project features a multi-step onboarding process, real-time matching, and a robust backend.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Features
 
-## Step 1: Start Metro
+### 🔐 Authentication & Onboarding
+- **Linear Onboarding Flow:** 20+ screens for a detailed profile setup (Name, DOB, Gender, Location, Job, Workplace, etc.).
+- **Email & OTP Verification:** Secure signup and login process.
+- **Profile Prompts:** Interactive prompts to showcase personality.
+- **Photo Management:** Dedicated screens for uploading and managing profile pictures.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### 💘 Core Dating UX
+- **Home Feed:** Discover potential matches through prompt-based cards.
+- **Likes & Matches:** Send and receive likes, with dedicated screens for handling matches.
+- **Real-time Chat:** Instant messaging using Socket.io for matched users.
+- **Profile View:** Detailed profile cards for deeper insights into matches.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### 💎 Premium Features
+- **Hinge Plus & HingeX:** Subscription screens and logic for premium tiers.
+- **Boosts & Unlimited Likes:** Integrated upsell flows.
 
-```sh
-# Using npm
-npm start
+## 🛠️ Tech Stack
 
-# OR using Yarn
-yarn start
+### Frontend (Mobile)
+- **Framework:** [React Native](https://reactnative.dev/) (0.84.1)
+- **Navigation:** [React Navigation v7](https://reactnavigation.org/) (Stack & Bottom Tabs)
+- **Icons:** React Native Vector Icons (AntDesign, Entypo, Ionicons, etc.)
+- **Animations:** [Lottie React Native](https://github.com/lottierender/lottie-react-native)
+- **Networking:** Axios for API communication
+- **Real-time:** Socket.io-client
+
+### Backend (API)
+- **Runtime:** Node.js
+- **Framework:** Express.js (v5.2.1)
+- **Database:** MongoDB with Mongoose ODM
+- **Authentication:** JSON Web Tokens (JWT) & Bcrypt for password hashing
+- **Real-time:** Socket.io
+- **Utilities:** Dayjs, Dotenv, UUID
+
+## 📁 Project Structure
+
+```text
+hinge/
+├── api/                # Node.js Express Backend
+│   ├── controllers/    # Business logic for routes
+│   ├── models/         # Mongoose schemas (User, Message)
+│   ├── routes/         # API endpoints
+│   ├── service/        # Database interaction layers
+│   ├── utils/          # Socket.io and helper utilities
+│   └── index.js        # Server entry point
+├── components/         # Reusable React Native components
+├── navigation/         # Stack and Tab navigation logic
+├── screens/            # 30+ Mobile application screens
+├── utils/              # Frontend helper functions
+├── assets/             # Lottie animations, fonts, and images
+└── App.js              # Frontend entry point
 ```
 
-## Step 2: Build and run your app
+## 🏁 Getting Started
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### Prerequisites
+- Node.js (>= 22.11.0)
+- React Native Development Environment ([Setup Guide](https://reactnative.dev/docs/set-up-your-environment))
+- MongoDB instance (local or Atlas)
 
-### Android
-
+### 1. Backend Setup
 ```sh
-# Using npm
+cd api
+npm install
+# Create a .env file with: PORT, MONGO_URI, JWT_SECRET
+npm start
+```
+
+### 2. Frontend Setup
+```sh
+# From the root directory
+npm install
+
+# For iOS (macOS only)
+cd ios && pod install && cd ..
+
+# Start Metro Bundler
+npm start
+```
+
+### 3. Run the App
+```sh
+# Android
 npm run android
 
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# iOS
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 🏗️ Architecture
+The app follows a **Presentation-Navigation-Data** layer architecture:
+- **Presentation:** UI screens built with React Native components.
+- **Navigation:** Controlled by React Navigation, switching between `AuthStack` (onboarding) and `MainStack` (authenticated tabs).
+- **Data:** Backend API handles persistence and real-time events, with local state managed via React Context/Hooks.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🗺️ Roadmap
+- [ ] Implement Redux Toolkit for global state management.
+- [ ] Integrate Cloudinary for image uploads.
+- [ ] Add Push Notifications (FCM/APNs).
+- [ ] Integrate Stripe for subscriptions.
+- [ ] Complete E2E testing with Detox.
 
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## 📄 License
+This project is licensed under the ISC License.
